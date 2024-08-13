@@ -1,0 +1,51 @@
+<div class="main-container">
+  <div class="top-bar">
+    <button mat-icon-button (click)="closeDialog()"><mat-icon>close</mat-icon></button>
+    <button mat-raised-button style="width: 80px" (click)="saveAndCloseDialog()">Save</button>
+  </div>
+  <div class="row ml-0 mr-0" mat-dialog-content [ngStyle]="{ 'overflow-y': screenWidth <= 765 ? 'scroll' : '' }" style="flex: 1">
+    <div class="col-sm-12 col-md-6 pr-0 pl-0 editor-part">
+      <ng-container *ngIf="screenWidth <= 765 else buttonSet"></ng-container>
+      <json-editor [options]="options" [data]="fieldsForEditor"></json-editor>
+    </div>
+
+    <div class="col-sm-12 col-md-6 pr-0 pl-0 form-part" [formGroup]="form">
+      <ng-container *ngIf="screenWidth > 765 else buttonSet"></ng-container>
+      <mat-card class="pr-0">
+        <h6>Dynamic Form</h6>
+        <mat-divider></mat-divider>
+        <mat-card-content
+          class="card-content pr-2"
+          id="cardBody"
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="fieldsForForm.fields"
+          formArrayName="controlsArray"
+        >
+          <form-builder
+            [fields]="fieldsForForm.fields"
+            [editor]="editor"
+            [fullFields]="fieldsForForm"
+            [dropListIds]="dropLists"
+            [controlsArray]="controlsArray"
+          ></form-builder>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <ng-template #buttonSet>
+    <div class="button-set" cdkDropList [cdkDropListConnectedTo]="dropLists" id="button-list">
+      <ng-container *ngIf="!isDependentEnable">
+        <ng-container *ngFor="let data of dragData">
+          <button mat-raised-button cdkDrag [cdkDragData]="data">{{data}}</button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="isDependentEnable">
+        <ng-container *ngFor="let data of dragData">
+          <button *ngIf="data != 'divider'" mat-raised-button cdkDrag [cdkDragData]="data + 'Depend'">{{data}}</button>
+        </ng-container>
+      </ng-container>
+      <button mat-raised-button (click)="this.isDependentEnable = !this.isDependentEnable" [ngStyle]="{ 'color': isDependentEnable ? 'green' : '' }">dependent fields</button>
+    </div>
+  </ng-template>
+</div>

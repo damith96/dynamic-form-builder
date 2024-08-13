@@ -1,0 +1,6 @@
+<div class="row ml-0 mr-0">
+  <div align="center" id="wrapper" [class]="fields[i]?.classes?.wrapper" [style]="fields[i]?.styles?.wrapper" *ngFor="let control of controlsArray.controls; let i=index">
+    <field-builder [field]="fields[i]" [id]="i" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fields" [controlsArray]="controlsArray"></field-builder>
+  </div>
+</div>
+

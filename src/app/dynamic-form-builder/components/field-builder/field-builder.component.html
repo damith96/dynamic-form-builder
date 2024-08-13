@@ -1,0 +1,23 @@
+<div *ngIf="!hide" class="form-group mt-1 mb-0 w-100">
+  <ng-container [ngSwitch]="field.type">
+    <textbox *ngSwitchCase="'text'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></textbox>
+    <email *ngSwitchCase="'email'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></email>
+    <password *ngSwitchCase="'password'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></password>
+    <url *ngSwitchCase="'url'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></url>
+    <number *ngSwitchCase="'number'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></number>
+    <date *ngSwitchCase="'date'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></date>
+    <text-area *ngSwitchCase="'textarea'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></text-area>
+    <dropdown *ngSwitchCase="'dropdown'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></dropdown>
+
+    <divider *ngSwitchCase="'divider'" [field]="field" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></divider>
+
+    <file *ngSwitchCase="'file'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></file>
+    <radio *ngSwitchCase="'radio'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></radio>
+    <checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></checkbox>
+    <tel *ngSwitchCase="'tel'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></tel>
+
+    <stepper *ngSwitchCase="'stepper'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></stepper>
+    <expansion-panel *ngSwitchCase="'expansion-panel'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></expansion-panel>
+    <tab *ngSwitchCase="'tab'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></tab>
+  </ng-container>
+</div>

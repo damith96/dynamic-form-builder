@@ -1,0 +1,35 @@
+<div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
+  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
+    <button mat-icon-button class="m-0" [hidden]="hideButton" matTooltip="Add New Step" (click)="addStep()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" matTooltip="Remove Step" [disabled]="field.steps.length <= 2" (click)="removeStep()">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <mat-icon>open_with</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-stepper [linear]="field.isLinear" #stepper [orientation]="field.orientation" (selectionChange)="onSelectionChange($event)" cdkDropListGroup [class]="field.classes.field" [style]="field.styles.field">
+
+    <mat-step [stepControl]="form.get(uniqueId + i.toString())" [editable]="step.editable" *ngFor="let step of field.steps;let i=index;" [optional]="step.optional">
+      <form [formGroup]="form.get(uniqueId + i.toString())">
+        <ng-template matStepLabel>{{step.label}}</ng-template>
+        <!-- <div class="ph"><h4>Drop here</h4></div> -->
+        <div cdkDropList (cdkDropListDropped)="drop($event)" [id]="uniqueId + i.toString()" [cdkDropListData]="step.fields" style="min-height: 50px;">
+          <form-builder [fields]="step.fields" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [controlsArray]="form.get(uniqueId + i.toString()).get(uniqueId + i.toString())"></form-builder>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious *ngIf="!(i==0)">Back</button>
+          <button mat-button matStepperNext *ngIf="!(i==field.steps.length-1)">Next</button>
+          <button mat-button *ngIf="(i==field.steps.length-1)" (click)="stepper.reset()">Reset</button>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-stepper>
+</div>

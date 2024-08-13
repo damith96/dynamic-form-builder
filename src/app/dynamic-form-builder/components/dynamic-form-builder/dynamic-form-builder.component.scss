@@ -1,0 +1,76 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+
+  .top-bar{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    flex: 0 0 auto;
+  }
+
+  .editor-part{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    json-editor{
+      display: block;
+      flex: 1;
+      height: 100%;
+    }
+  }
+
+  .form-part{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    mat-card{
+      flex: auto;
+      height: 100%;
+
+      .card-content{
+        position: absolute;
+        left: 16px;
+        right: 0;
+        bottom: 0;
+        top: 44px;
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  .button-set{
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    background-color: #555;
+    padding: 5px;
+    flex:0 0 auto;
+
+    button {
+      margin-left: 5px;
+      border-radius: 1.0rem;
+      z-index: 1;
+      position: relative;
+    }
+  }
+}
+
+::ng-deep .jsoneditor{
+  border: thin solid #555;
+
+  .ace_scrollbar-h{
+    overflow-x: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+

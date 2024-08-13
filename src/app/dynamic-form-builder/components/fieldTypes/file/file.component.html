@@ -1,0 +1,26 @@
+<div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
+  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
+    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <mat-icon>open_with</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <ngx-dropzone (change)="onSelect($event)" [accept]="field.validators.fileType" [maxFileSize]="field.validators.maxFileSizeInBytes">
+      <ngx-dropzone-label>Drag and drop or click here to upload!</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+    <span *ngIf="control.invalid" style="color: red;font-size: 11px;">{{field.errorMessages.required}}</span>
+    <div class="fp_restrictions">
+      <div class="size size-light">
+        <span>Maximum file size: {{fileSize}}, maximum number of files: {{field.validators.maxNoOfFiles}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

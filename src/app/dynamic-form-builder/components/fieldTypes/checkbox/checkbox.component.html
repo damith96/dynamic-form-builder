@@ -1,0 +1,39 @@
+<div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
+  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
+    <button *ngIf="field.dependentFields" mat-icon-button class="m-0" [hidden]="hideButton" [matMenuTriggerFor]="criteria">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <mat-icon>open_with</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #criteria="matMenu">
+    <div *ngFor="let opt of options;let i = index">
+      <button mat-menu-item (click)="onOptionChange(i+1)">{{ opt }}</button>
+    </div>
+  </mat-menu>
+
+  <div align="start" [formGroup]="form" style="width: 100%;">
+    <mat-label *ngIf="!field.dependentFields" [class]="field.classes?.label" [style]="field.styles?.label">{{field.label}}</mat-label>
+    <section [class]="field.classes.checkboxGroup" [style]="field.styles?.checkboxGroup">
+      <ul *ngIf="!field.dependentFields" style="margin-bottom: 0px">
+        <li *ngFor="let opt of field.options">
+          <mat-checkbox [formControlName]="opt">{{opt}}</mat-checkbox>
+          <!-- <select *ngIf="opt.dependentFields" name="criteria" id="criteria" style="margin-left: 10px;" (change)="onCriteriaChange($event,opt.key)">
+            <option value="1">required</option>
+            <option value="2">readOnly</option>
+            <option value="3">visibility</option>
+            <option value="4">valueChange</option>
+          </select> -->
+        </li>
+      </ul>
+      <mat-checkbox *ngIf="field.dependentFields" [style]="field.styles?.checkbox" [formControlName]="field.label">{{field.label}}</mat-checkbox>
+    </section>
+    <div style="margin-left: 15px;font-size: 11px;"><mat-error *ngIf="form.invalid && form.dirty">{{field.errorMessages.required}}</mat-error></div>
+  </div>
+</div>
+

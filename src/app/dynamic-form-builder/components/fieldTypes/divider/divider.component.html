@@ -1,0 +1,12 @@
+<div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag style="height: fit-content">
+  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
+    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <mat-icon>open_with</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-divider [class]="field.classes.field" [style]="field.styles.field"></mat-divider>
+</div>

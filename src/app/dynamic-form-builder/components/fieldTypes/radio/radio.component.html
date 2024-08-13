@@ -1,0 +1,27 @@
+<div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
+  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
+    <button *ngIf="field.dependentFields" mat-icon-button class="m-0" [hidden]="hideButton" [matMenuTriggerFor]="criteria">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <mat-icon>open_with</mat-icon>
+    </button>
+    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #criteria="matMenu">
+    <div *ngFor="let opt of options;let i = index">
+      <button mat-menu-item (click)="onOptionChange(i+1)">{{ opt }}</button>
+    </div>
+  </mat-menu>
+
+  <mat-label [class]="field.classes.label" [style]="field.styles.label">{{field.label}}</mat-label>
+  <mat-radio-group aria-label="Select an option" [class]="field.classes.radioGroup" [style]="field.styles.radioGroup" [formControl]="control">
+    <mat-radio-button [value]="opt" *ngFor="let opt of field.options" [class]="field.classes.radioButton" [style]="field.styles.radioButton">{{opt}}</mat-radio-button>
+  </mat-radio-group>
+  <div><mat-error *ngIf="control.invalid" style="font-size: 11px;;">{{field.errorMessages.required}}</mat-error></div>
+</div>
+
+

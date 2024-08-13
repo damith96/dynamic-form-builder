@@ -1,0 +1,22 @@
+.mat-icon {
+  font-size: 20px;
+}
+
+::ng-deep mat-tab-group .mat-tab-body-content {
+  overflow: hidden;
+}
+
+$border: 2px dashed gray;
+
+.tab-body{
+  border-left: $border;
+  border-bottom: $border;
+  border-right: $border;
+  min-height: 50px;
+  padding: 0 10px 10px 10px;
+}
+
+mat-tab-group {
+  padding-left: 0px;
+  padding-right: 0px;
+}
