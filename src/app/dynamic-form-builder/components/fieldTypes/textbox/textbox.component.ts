@@ -19,6 +19,7 @@ export class TextBoxComponent implements OnInit, OnDestroy {
     @Input() fullFieldsArray:any[] = [];
 
     hideButton = true;
+    
     public subscription = new Subscription();
 
     constructor(public fieldService:FieldService) {
@@ -93,9 +94,9 @@ export class TextBoxComponent implements OnInit, OnDestroy {
         }
     }
 
-    onValueChange(value: string) {
+    onValueChange(event: Event) {
         if (this.field.value || this.field.value === '') {
-            this.field.value = value;
+            this.field.value = (event.target as HTMLInputElement).value;;
             this.editor.set(this.fullFields);
         }
     }

@@ -10,7 +10,7 @@
 
     <mat-form-field appearance="fill" [class]="field.classes.field" [style]="field.styles">
         <mat-label>{{field.label}}</mat-label>
-        <input [attr.type]="field.type" matInput (input)="onValueChange($event.target.value)" [placeholder]="field.placeholder" [formControl]="control">
+        <input [attr.type]="field.type" matInput (input)="onValueChange($event)" [placeholder]="field.placeholder" [formControl]="control">
         <mat-icon *ngIf="field.suffixIcon" matSuffix>{{field.suffixIcon}}</mat-icon>
         <mat-icon *ngIf="field.prefixIcon" matPrefix>{{field.prefixIcon}}</mat-icon>
         <mat-hint>{{field.hint}}</mat-hint>

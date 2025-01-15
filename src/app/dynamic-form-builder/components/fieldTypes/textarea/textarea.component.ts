@@ -74,9 +74,9 @@ export class TextAreaComponent implements OnInit, OnDestroy {
         }
     }
 
-    onValueChange(value: string) {
+    onValueChange(event: Event) {
         if (this.field.value || this.field.value === '') {
-            this.field.value = value;
+            this.field.value = (event.target as HTMLTextAreaElement).value;;
             this.editor.set(this.fullFields);
         }
     }

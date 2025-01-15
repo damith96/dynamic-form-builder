@@ -74,6 +74,7 @@ export class DynamicFormBuilderComponent implements OnInit, AfterViewInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
       if (event.previousContainer === event.container) {
           moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
           moveItemInArray(this.controlsArray.controls, event.previousIndex, event.currentIndex);

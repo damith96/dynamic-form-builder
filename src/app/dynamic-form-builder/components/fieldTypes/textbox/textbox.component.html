@@ -1,5 +1,5 @@
 <div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
-  <div align="end" style="height: 20px;margin-bottom: 10px;">
+  <div align="end" style="height: 30px;">
     <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
       <mat-icon>open_with</mat-icon>
     </button>
@@ -10,7 +10,7 @@
 
   <mat-form-field appearance="fill" [class]="field.classes.field" [style]="field.styles.field">
       <mat-label>{{field?.label}}</mat-label>
-      <input [attr.type]="field.type" matInput [maxLength]="field.maxLength" (input)="onValueChange($event.target.value)" [placeholder]="field.placeholder" [formControl]="control" [readonly]="field.readOnly"/>
+      <input [attr.type]="field.type" matInput [maxLength]="field.maxLength" (input)="onValueChange($event)" [placeholder]="field.placeholder" [formControl]="control" [readonly]="field.readOnly"/>
       <mat-icon *ngIf="field.suffixIcon" matSuffix>{{field.suffixIcon}}</mat-icon>
       <mat-icon *ngIf="field.prefixIcon" matPrefix>{{field.prefixIcon}}</mat-icon>
       <mat-hint>{{field.hint}}</mat-hint>

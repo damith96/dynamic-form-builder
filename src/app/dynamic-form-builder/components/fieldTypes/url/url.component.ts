@@ -83,9 +83,9 @@ export class UrlComponent implements OnInit, OnDestroy {
         this.control.addValidators(Validators.pattern(reg));
     }
 
-    onValueChange(value: string) {
+    onValueChange(event: Event) {
         if (this.field.value || this.field.value === '') {
-            this.field.value = value;
+            this.field.value = (event.target as HTMLInputElement).value;;
             this.editor.set(this.fullFields);
         }
     }

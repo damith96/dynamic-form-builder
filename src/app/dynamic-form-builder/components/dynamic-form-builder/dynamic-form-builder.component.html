@@ -3,19 +3,19 @@
     <button mat-icon-button (click)="closeDialog()"><mat-icon>close</mat-icon></button>
     <button mat-raised-button style="width: 80px" (click)="saveAndCloseDialog()">Save</button>
   </div>
-  <div class="row ml-0 mr-0" mat-dialog-content [ngStyle]="{ 'overflow-y': screenWidth <= 765 ? 'scroll' : '' }" style="flex: 1">
-    <div class="col-sm-12 col-md-6 pr-0 pl-0 editor-part">
+  <!-- flex:1 -->
+  <div class="row ms-0 me-0 flex-grow-1" mat-dialog-content [ngStyle]="{ 'overflow-y': screenWidth <= 765 ? 'scroll' : '' }">
+    <div class="col-sm-12 col-md-6 ps-0 editor-part" [ngClass]="{ 'pe-0': screenWidth <= 765}">
       <ng-container *ngIf="screenWidth <= 765 else buttonSet"></ng-container>
       <json-editor [options]="options" [data]="fieldsForEditor"></json-editor>
     </div>
 
-    <div class="col-sm-12 col-md-6 pr-0 pl-0 form-part" [formGroup]="form">
+    <div class="col-sm-12 col-md-6 pe-0 form-part" [formGroup]="form" [ngClass]="{ 'ps-0': screenWidth <= 765}">
       <ng-container *ngIf="screenWidth > 765 else buttonSet"></ng-container>
-      <mat-card class="pr-0">
-        <h6>Dynamic Form</h6>
+      <mat-card class="h-100">
+        <h6 class="ps-3 mt-2">Dynamic Form</h6>
         <mat-divider></mat-divider>
         <mat-card-content
-          class="card-content pr-2"
           id="cardBody"
           cdkDropList
           (cdkDropListDropped)="drop($event)"

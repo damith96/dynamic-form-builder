@@ -85,9 +85,9 @@ export class TelComponent implements OnInit, OnDestroy {
         return this.field.errorMessages.validity;
     }
 
-    onValueChange(value: string) {
+    onValueChange(event: Event) {
         if (this.field.value || this.field.value === '') {
-            this.field.value = value;
+            this.field.value = (event.target as HTMLInputElement).value;
             this.editor.set(this.fullFields);
         }
     }
