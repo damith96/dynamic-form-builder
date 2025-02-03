@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Optional } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { JsonEditorComponent } from 'ang-jsoneditor';
 import { Subscription } from 'rxjs';
@@ -13,16 +13,15 @@ export class TextBoxComponent implements OnInit, OnDestroy {
     @Input() field:any = {};
     @Input() control:FormControl;
     @Input() controlsArray:any;
-    @Input() id:number=0;
+    @Input() id =0;
     @Input() editor!: JsonEditorComponent;
     @Input() fullFields: any = {};
     @Input() fullFieldsArray:any[] = [];
 
     hideButton = true;
-    
-    public subscription = new Subscription();
+    subscription = new Subscription();
 
-    constructor(public fieldService:FieldService) {
+    constructor(private fieldService: FieldService) {
         this.control = new FormControl();
     }
 

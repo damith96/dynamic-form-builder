@@ -1,11 +1,9 @@
-
-
 <div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
-  <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
-    <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+  <div align="end" style="height: 30px;">
+    <button mat-icon-button class="m-0 btn" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
       <mat-icon>open_with</mat-icon>
     </button>
-    <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+    <button mat-icon-button class="m-0 btn" [hidden]="hideButton" (click)="onDelete()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
@@ -21,7 +19,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div cdkDropList (cdkDropListDropped)="drop($event)" style="min-height: 50px;" [id]="uniqueId + i.toString()" [cdkDropListData]="panel.fields">
-        <form-builder [fields]="panel.fields" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [controlsArray]="form.get(uniqueId + i.toString())"></form-builder>
+        <form-builder [fields]="panel.fields" [editor]="editor" [fullFields]="fullFields" [dropList]="dropList" [controlsArray]="form.get(uniqueId + i.toString())"></form-builder>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

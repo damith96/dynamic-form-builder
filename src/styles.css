@@ -6,7 +6,36 @@ body {
   min-height: 100% !important;
 }
 
-::ng-deep .mat-mdc-icon-button.mat-mdc-button-base{
+.btn.mat-mdc-icon-button.mat-mdc-button-base{
   --mdc-icon-button-state-layer-size: 30px;
-  padding:0;
+  padding: 0;
+}
+
+.btn .mat-icon{
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* customize scroll bar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 30px !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

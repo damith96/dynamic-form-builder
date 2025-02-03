@@ -1,24 +1,23 @@
 <div (mouseover)="hideButton=false" (mouseout)="hideButton=true" cdkDrag>
-    <div align="end" (mouseover)="hideButton=false" (mouseout)="hideButton=true" style="height: 20px;margin-bottom: 10px;">
-      <button mat-icon-button class="m-0" [hidden]="hideButton" matTooltip="Add New Tab" (click)="addTab()">
+    <div align="end" style="height: 30px;">
+      <button mat-icon-button class="m-0 btn" [hidden]="hideButton" matTooltip="Add New Tab" (click)="addTab()">
         <mat-icon>add</mat-icon>
       </button>
-      <button mat-icon-button class="m-0" [hidden]="hideButton" matTooltip="Remove Tap" [disabled]="field.tabs.length <= 2" (click)="removeTab()">
+      <button mat-icon-button class="m-0 btn" [hidden]="hideButton" matTooltip="Remove Tap" [disabled]="field.tabs.length <= 2" (click)="removeTab()">
         <mat-icon>remove</mat-icon>
       </button>
-      <button mat-icon-button class="m-0" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
+      <button mat-icon-button class="m-0 btn" [hidden]="hideButton" cdkDragHandle style="cursor: move;">
         <mat-icon>open_with</mat-icon>
       </button>
-      <button mat-icon-button class="m-0" [hidden]="hideButton" (click)="onDelete()">
+      <button mat-icon-button class="m-0 btn" [hidden]="hideButton" (click)="onDelete()">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
 
     <mat-tab-group [class]="field.classes.field" [style]="field.styles.field" (selectedTabChange)="onSelectionTabChange($event)">
-
         <mat-tab [label]="tab.label" *ngFor="let tab of field.tabs;let i=index">
             <div class="tab-body" cdkDropList (cdkDropListDropped)="drop($event)" [id]="uniqueId + i.toString()" [cdkDropListData]="tab.fields">
-                <form-builder [fields]="tab.fields" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [controlsArray]="form.get(uniqueId + i.toString())"></form-builder>
+                <form-builder [fields]="tab.fields" [editor]="editor" [fullFields]="fullFields" [dropList]="dropList" [controlsArray]="form.get(uniqueId + i.toString())"></form-builder>
             </div>
         </mat-tab>
 

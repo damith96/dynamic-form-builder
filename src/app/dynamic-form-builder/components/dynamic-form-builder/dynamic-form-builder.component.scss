@@ -11,6 +11,11 @@
     align-items: center;
     padding: 0 10px;
     // flex: 0 0 auto;
+    mat-icon{
+      position: absolute;
+      bottom: 25%;
+      left: 25%;
+    }
   }
 
   .editor-part{
@@ -45,7 +50,7 @@
     overflow: hidden;
     overflow-x: scroll;
     white-space: nowrap;
-    background-color: #555;
+    background-color: gray;
     padding: 5px 0;
     flex:0 0 auto;
 
@@ -59,16 +64,12 @@
 }
 
 ::ng-deep .jsoneditor{
-  border: thin solid #555;
+  background-color: black;
+  border: thin solid gray;
 
   .ace_scrollbar-h{
     overflow-x: hidden;
   }
-}
-
-::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
 }
 
 

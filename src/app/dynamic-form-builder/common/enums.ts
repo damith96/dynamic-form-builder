@@ -15,6 +15,21 @@ export enum FIELDS {
   STEPPER = 'stepper',
   EXPANSION_PANEL = 'expansion panel',
   TAB = 'tab',
+  TEXT_DEPENDENT = 'textDepend',
+  EMAIL_DEPENDENT = 'emailDepend',
+  PASSWORD_DEPENDENT = 'passwordDepend',
+  URL_DEPENDENT = 'urlDepend',
+  TEL_DEPENDENT = 'telDepend',
+  NUMBER_DEPENDENT = 'numberDepend',
+  DATE_DEPENDENT = 'dateDepend',
+  TEXTAREA_DEPENDENT = 'textareaDepend',
+  DROPDOWN_DEPENDENT = 'dropdownDepend',
+  CHECKBOXES_DEPENDENT = 'checkboxesDepend',
+  RADIO_BUTTONS_DEPENDENT = 'radio buttonsDepend',
+  FILE_DEPENDENT = 'fileDepend',
+  STEPPER_DEPENDENT = 'stepperDepend',
+  EXPANSION_PANEL_DEPENDENT = 'expansion panelDepend',
+  TAB_DEPENDENT = 'tabDepend',
 };
 
 export enum DEPENDENT_FIELDS {

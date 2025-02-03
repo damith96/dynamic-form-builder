@@ -1,3 +1,5 @@
+import { FIELDS } from "./enums";
+
 export const text = {
     type: 'text',
     name: '',
@@ -759,3 +761,43 @@ export const tabDepend = {
         field: '',
     },
 };
+
+export type FieldObjects = {
+    [key in FIELDS]: any;
+}
+
+export const fieldObjects: FieldObjects= {
+    [FIELDS.TEXT]: text,
+    [FIELDS.EMAIL]: email,
+    [FIELDS.PASSWORD]: password,
+    [FIELDS.URL]: url,
+    [FIELDS.TEL]: tel,
+    [FIELDS.NUMBER]: number,
+    [FIELDS.DATE]: date,
+    [FIELDS.TEXTAREA]: textArea,
+    [FIELDS.DROPDOWN]: dropdown,
+    [FIELDS.CHECKBOXES]: checkbox,
+    [FIELDS.RADIO_BUTTONS]: radio,
+    [FIELDS.FILE]: file,
+    [FIELDS.DIVIDER]: divider,
+    [FIELDS.STEPPER]: stepper,
+    [FIELDS.EXPANSION_PANEL]: expansionPanel,
+    [FIELDS.TAB]: tab,
+    [FIELDS.TEXT_DEPENDENT]: textDepend,
+    [FIELDS.EMAIL_DEPENDENT]: emailDepend,
+    [FIELDS.PASSWORD_DEPENDENT]: passwordDepend,
+    [FIELDS.URL_DEPENDENT]: urlDepend,
+    [FIELDS.TEL_DEPENDENT]: telDepend,
+    [FIELDS.NUMBER_DEPENDENT]: numberDepend,
+    [FIELDS.DATE_DEPENDENT]: dateDepend,
+    [FIELDS.TEXTAREA_DEPENDENT]: text_areaDepend,
+    [FIELDS.DROPDOWN_DEPENDENT]: drop_down_menuDepend,
+    [FIELDS.CHECKBOXES_DEPENDENT]: checkboxesDepend,
+    [FIELDS.RADIO_BUTTONS_DEPENDENT]: radio_buttonsDepend,
+    [FIELDS.FILE_DEPENDENT]: fileDepend,
+    [FIELDS.STEPPER_DEPENDENT]: stepperDepend,
+    [FIELDS.EXPANSION_PANEL_DEPENDENT]: expansion_panelDepend,
+    [FIELDS.TAB_DEPENDENT]: tabDepend,
+
+}
+

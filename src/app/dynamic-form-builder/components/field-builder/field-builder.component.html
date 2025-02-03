@@ -1,4 +1,4 @@
-<div *ngIf="!hide" class="form-group mt-1 mb-0 w-100">
+<div *ngIf="!hide" class="form-group">
   <ng-container [ngSwitch]="field.type">
     <textbox *ngSwitchCase="'text'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></textbox>
     <email *ngSwitchCase="'email'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></email>
@@ -16,8 +16,8 @@
     <checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></checkbox>
     <tel *ngSwitchCase="'tel'" [field]="field" [control]="controlsArray.get(id.toString())" [id]="id" [fullFields]="fullFields" [controlsArray]="controlsArray" [editor]="editor" [fullFieldsArray]="fullFieldsArray"></tel>
 
-    <stepper *ngSwitchCase="'stepper'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></stepper>
-    <expansion-panel *ngSwitchCase="'expansion-panel'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></expansion-panel>
-    <tab *ngSwitchCase="'tab'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropListIds]="dropListIds" [fullFieldsArray]="fullFieldsArray"></tab>
+    <stepper *ngSwitchCase="'stepper'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropList]="dropList" [fullFieldsArray]="fullFieldsArray"></stepper>
+    <expansion-panel *ngSwitchCase="'expansion-panel'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropList]="dropList" [fullFieldsArray]="fullFieldsArray"></expansion-panel>
+    <tab *ngSwitchCase="'tab'" [field]="field" [form]="controlsArray.get(id.toString())" [id]="id" [controlsArray]="controlsArray" [editor]="editor" [fullFields]="fullFields" [dropList]="dropList" [fullFieldsArray]="fullFieldsArray"></tab>
   </ng-container>
 </div>

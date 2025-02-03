@@ -7,7 +7,7 @@
   <div class="row ms-0 me-0 flex-grow-1" mat-dialog-content [ngStyle]="{ 'overflow-y': screenWidth <= 765 ? 'scroll' : '' }">
     <div class="col-sm-12 col-md-6 ps-0 editor-part" [ngClass]="{ 'pe-0': screenWidth <= 765}">
       <ng-container *ngIf="screenWidth <= 765 else buttonSet"></ng-container>
-      <json-editor [options]="options" [data]="fieldsForEditor"></json-editor>
+      <json-editor [options]="options" [data]="editorFields"></json-editor>
     </div>
 
     <div class="col-sm-12 col-md-6 pe-0 form-part" [formGroup]="form" [ngClass]="{ 'ps-0': screenWidth <= 765}">
@@ -19,14 +19,14 @@
           id="cardBody"
           cdkDropList
           (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="fieldsForForm.fields"
+          [cdkDropListData]="formFields.fields"
           formArrayName="controlsArray"
         >
           <form-builder
-            [fields]="fieldsForForm.fields"
+            [fields]="formFields.fields"
             [editor]="editor"
-            [fullFields]="fieldsForForm"
-            [dropListIds]="dropLists"
+            [fullFields]="formFields"
+            [dropList]="dropList"
             [controlsArray]="controlsArray"
           ></form-builder>
         </mat-card-content>
@@ -34,18 +34,11 @@
     </div>
   </div>
   <ng-template #buttonSet>
-    <div class="button-set" cdkDropList [cdkDropListConnectedTo]="dropLists" id="button-list">
-      <ng-container *ngIf="!isDependentEnable">
-        <ng-container *ngFor="let data of dragData">
-          <button mat-raised-button cdkDrag [cdkDragData]="data">{{data}}</button>
-        </ng-container>
+    <div class="button-set" cdkDropList [cdkDropListConnectedTo]="dropList">
+      <ng-container *ngFor="let data of dragDataList">
+        <button mat-raised-button cdkDrag [cdkDragData]="isDependentEnable ? data + 'Depend' : data">{{data}}</button>
       </ng-container>
-      <ng-container *ngIf="isDependentEnable">
-        <ng-container *ngFor="let data of dragData">
-          <button *ngIf="data != 'divider'" mat-raised-button cdkDrag [cdkDragData]="data + 'Depend'">{{data}}</button>
-        </ng-container>
-      </ng-container>
-      <button mat-raised-button (click)="this.isDependentEnable = !this.isDependentEnable" [ngStyle]="{ 'color': isDependentEnable ? 'green' : '' }">dependent fields</button>
+      <button mat-raised-button (click)="isDependentEnable = !isDependentEnable" [ngStyle]="{ 'color': isDependentEnable ? 'green' : '' }">dependent fields</button>
     </div>
   </ng-template>
 </div>

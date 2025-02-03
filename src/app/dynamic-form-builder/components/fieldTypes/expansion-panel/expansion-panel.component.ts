@@ -5,28 +5,27 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { FieldService } from '../../../services/field.service';
 import { JsonEditorComponent } from 'ang-jsoneditor';
-import { DEPENDENT_FIELDS, FIELDS } from '../../../common/enums';
-// eslint-disable-next-line max-len
-import { checkbox, checkboxesDepend, date, dateDepend, divider, drop_down_menuDepend, dropdown, email, emailDepend, expansionPanel, expansion_panelDepend, file, fileDepend, number, numberDepend, password, passwordDepend, radio, radio_buttonsDepend, stepper, stepperDepend, tab, tabDepend, tel, telDepend, text, textArea, textDepend, text_areaDepend, url, urlDepend } from '../../../common/constants';
-import { from } from 'rxjs';
+import { FIELDS } from '../../../common/enums';
+import { fieldObjects } from '../../../common/constants';
+;
 @Component({
     selector: 'expansion-panel',
     templateUrl: './expansion-panel.component.html',
     styleUrls: ['./expansion-panel.component.scss'],
 })
 export class ExpansionPanelComponent implements OnInit {
-    @Input() field:any = {};
-    @Input() form:any;
-    @Input() id:number=0;
-    @Input() editor!:JsonEditorComponent;
-    @Input() fullFields:any = {};
-    @Input() dropListIds: string[] = [];
-    @Input() controlsArray:any;
-    @Input() fullFieldsArray:any[] = [];
+    @Input() field: any;
+    @Input() form: any;
+    @Input() id = 0;
+    @Input() editor!: JsonEditorComponent;
+    @Input() fullFields: any;
+    @Input() dropList!: string[];
+    @Input() controlsArray: any;
+    @Input() fullFieldsArray!: any[];
 
     activePanel = 0;
     hideButton = true;
-    uniqueId: string = "";
+    uniqueId = "";
     addedIds: string[] = [];
 
     constructor(public fieldService:FieldService, private fb: FormBuilder) {
@@ -37,16 +36,16 @@ export class ExpansionPanelComponent implements OnInit {
         this.uniqueId = uuidv4();
         this.field.panels.forEach((_: any, index: { toString: () => string; }) => {
             const id = this.uniqueId + index.toString();
-            this.dropListIds.unshift(id);
+            this.dropList.unshift(id);
             this.addedIds.push(id);
         });
         this.addControls();
     }
 
     ngOnDestroy(): void {
-        const filteredIds = this.dropListIds.filter(id => !this.addedIds.includes(id));
-        this.dropListIds.splice(0, this.dropListIds.length);
-        this.dropListIds.push(...filteredIds);
+        const filteredIds = this.dropList.filter(id => !this.addedIds.includes(id));
+        this.dropList.splice(0, this.dropList.length);
+        this.dropList.push(...filteredIds);
     }
 
     onDelete() {
@@ -63,106 +62,12 @@ export class ExpansionPanelComponent implements OnInit {
             moveItemInArray(array, event.previousIndex, event.currentIndex);
             this.editor.set(this.fullFields);
         } else {
-            switch (event.item.data) {
-                case FIELDS.TEXT:
-                    this.addFields(text);
-                    break;
-                case DEPENDENT_FIELDS.TEXT_DEPENDENT:
-                    this.addFields(textDepend);
-                    break;
-                case FIELDS.EMAIL:
-                    this.addFields(email);
-                    break;
-                case DEPENDENT_FIELDS.EMAIL_DEPENDENT:
-                    this.addFields(emailDepend);
-                    break;
-                case FIELDS.PASSWORD:
-                    this.addFields(password);
-                    break;
-                case DEPENDENT_FIELDS.PASSWORD_DEPENDENT:
-                    this.addFields(passwordDepend);
-                    break;
-                case FIELDS.URL:
-                    this.addFields(url);
-                    break;
-                case DEPENDENT_FIELDS.URL_DEPENDENT:
-                    this.addFields(urlDepend);
-                    break;
-                case FIELDS.TEL:
-                    this.addFields(tel);
-                    break;
-                case DEPENDENT_FIELDS.TEL_DEPENDENT:
-                    this.addFields(telDepend);
-                    break;
-                case FIELDS.NUMBER:
-                    this.addFields(number);
-                    break;
-                case DEPENDENT_FIELDS.NUMBER_DEPENDENT:
-                    this.addFields(numberDepend);
-                    break;
-                case FIELDS.DATE:
-                    this.addFields(date);
-                    break;
-                case DEPENDENT_FIELDS.DATE_DEPENDENT:
-                    this.addFields(dateDepend);
-                    break;
-                case FIELDS.TEXTAREA:
-                    this.addFields(textArea);
-                    break;
-                case DEPENDENT_FIELDS.TEXTAREA_DEPENDENT:
-                    this.addFields(text_areaDepend);
-                    break;
-                case FIELDS.DROPDOWN:
-                    this.addFields(dropdown);
-                    break;
-                case DEPENDENT_FIELDS.DROPDOWN_DEPENDENT:
-                    this.addFields(drop_down_menuDepend);
-                    break;
-                case FIELDS.CHECKBOXES:
-                    this.addFields(checkbox);
-                    break;
-                case DEPENDENT_FIELDS.CHECKBOXES_DEPENDENT:
-                    this.addFields(checkboxesDepend);
-                    break;
-                case FIELDS.RADIO_BUTTONS:
-                    this.addFields(radio);
-                    break;
-                case DEPENDENT_FIELDS.RADIO_BUTTONS_DEPENDENT:
-                    this.addFields(radio_buttonsDepend);
-                    break;
-                case FIELDS.FILE:
-                    this.addFields(file);
-                    break;
-                case DEPENDENT_FIELDS.FILE_DEPENDENT:
-                    this.addFields(fileDepend);
-                    break;
-                case FIELDS.DIVIDER:
-                    this.addFields(divider);
-                    break;
-                case FIELDS.STEPPER:
-                    this.addFields(JSON.parse(JSON.stringify(stepper)));
-                    break;
-                case DEPENDENT_FIELDS.STEPPER_DEPENDENT:
-                    this.addFields(JSON.parse(JSON.stringify(stepperDepend)));
-                    break;
-                case FIELDS.EXPANSION_PANEL:
-                    this.addFields(JSON.parse(JSON.stringify(expansionPanel)));
-                    break;
-                case DEPENDENT_FIELDS.EXPANSION_PANEL_DEPENDENT:
-                    this.addFields(JSON.parse(JSON.stringify(expansion_panelDepend)));
-                    break;
-                case FIELDS.TAB:
-                    this.addFields(JSON.parse(JSON.stringify(tab)));
-                    break;
-                case DEPENDENT_FIELDS.TAB_DEPENDENT:
-                    this.addFields(JSON.parse(JSON.stringify(tabDepend)));
-                    break;
-            }
+            this.addFields(fieldObjects[event.item.data as FIELDS]);
         }
     }
 
     addFields(field:any) {
-        this.field.panels[this.activePanel].fields.push(field);
+        this.field.panels[this.activePanel].fields.push(JSON.parse(JSON.stringify(field)));
         this.form = this.fb.group({});
         this.addControls();
         this.editor.set(this.fullFields);
